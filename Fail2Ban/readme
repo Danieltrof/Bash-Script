@@ -1,0 +1,32 @@
+Install Fail2Ban
+    sudo apt update
+    sudo apt install fail2ban -y
+
+Configure SSH-monitoring
+    sudo nano /etc/fail2ban/jail.local
+
+Inside the jail.local
+    copy from file in repo
+    maxretry = 3 => 3 failed attempts before ban
+    batime = 600 => IP is banned for 10 minutes
+    findtime = 300 => 3 attemps must occur within 5 minutes
+
+Start og restart fail2ban   
+    sudo systemctl restart fail2ban
+    sudo systemctl enable fail2ban
+
+Check jail status with fail2ban_status.sh" or this command
+    sudo fail2ban-client status sshd
+
+Test Fail2Ban with wrong ssh-login
+    ssh wronguser@<target_ip>
+    Your IP should be banned after 3 tries
+
+Check banned IP's with script or this command
+    sudo fail2ban-client status sshd
+    You will see this: 
+        Banned IP list: 192.168.1.100
+
+You can remove ban manually
+    sudo fail2ban-client sshd unbanip <ip-address>
+
