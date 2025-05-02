@@ -11,7 +11,7 @@ Inside the jail.local
     batime = 600 => IP is banned for 10 minutes
     findtime = 300 => 3 attemps must occur within 5 minutes
 
-Start og restart fail2ban   
+Start and restart fail2ban   
     sudo systemctl restart fail2ban
     sudo systemctl enable fail2ban
 
